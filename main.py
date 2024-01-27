@@ -127,7 +127,7 @@ def download_and_save_image(image_url, save_path="downloaded_image.png"):
         img = Image.open(image_data).convert("RGB")
         saved_img_path = "./" + save_path
         img.save(saved_img_path)
-        resize_img = resize(img, (150, 150))
+        resize_img = resize(img, (1822,1275))
     
         img_array = img_to_array(resize_img)
         img_array = np.expand_dims(img_array, axis=0)
@@ -141,10 +141,10 @@ def download_and_save_image(image_url, save_path="downloaded_image.png"):
             prediction = loaded_model.predict(img_array_copy)
             predicted_class = np.argmax(prediction)
     
-            class_labels = {0: 'cardboard', 1: 'metal', 2: 'paper', 3: 'plastic'}
+            class_labels = {0: 'Normal', 1: 'Bacteria', 2: 'Virus'}
             predicted_category = class_labels[predicted_class]
     
-            result = f"This Item is a {predicted_category}"
+            result = f"This Xray is a {predicted_category}"
             st.success(result)
             st.image(img, caption=None)
 
