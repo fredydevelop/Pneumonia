@@ -204,31 +204,29 @@ def insert():
             predicted_class = np.argmax(prediction)
 
             # Map the class label to its corresponding category
-            class_labels = {0: 'cardboard', 1: 'metal', 2: 'paper', 3: 'plastic'}
+            class_labels = {0: 'Normal', 1: 'Bacteria', 2: 'Virus'}
             predicted_category = class_labels[predicted_class]
 
             
 
-            if predicted_category == "cardboard":
-                result=f"This Item is a {predicted_category}, it should be recycled"
+            if predicted_category == "Normal":
+                result=f"The Xray result is {predicted_category}, there is no issue with this Patient"
                 # Print the prediction
                 st.success(result)
                 st.image(img, caption=None)
-            elif predicted_category == "metal":
-                result=f"This Item is a {predicted_category}, it should be recycled"
+            elif predicted_category == "Bacteria":
+                result=f"The Xray result is {predicted_category}, this Patient has a Bacteria Pneumonia Sickness"
                 # Print the prediction
                 st.success(result)
                 st.image(img, caption=None)
-            elif predicted_category == "plastic":
-                result=f"This Item is a {predicted_category}, it should be recycled"
+            elif predicted_category == "Virus":
+                result=f"The Xray result is a {predicted_category}, this Patient has Virus Pneumonia"
                 # Print the prediction
                 st.success(result)
                 st.image(img, caption=None)
-            elif predicted_category == "paper":
-                result=f"This Item is a {predicted_category}, it should be disposed"
-                # Print the prediction
-                st.success(result)
-                st.image(img, caption=None)
+            else:
+                print()
+           
 
 
 
