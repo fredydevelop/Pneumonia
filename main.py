@@ -190,11 +190,10 @@ def insert():
 #     #     st.info('Upload your dataset !!')
 
 
-if selection== "upload an image":
+
+insert()
+
+
+if __name__ == "__main__":
     insert()
 
-if selection =="Insert Image url":
-    image_url_input()
-
-# if __name__ == "__main__":
-#     main()
