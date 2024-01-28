@@ -125,6 +125,7 @@ def insert():
         
         if st.button("Predict"):
             prediction = loaded_model.predict(img_array_copy)
+        
             predicted_class = np.argmax(prediction)
 
             # Map the class label to its corresponding category
@@ -132,7 +133,7 @@ def insert():
             predicted_category = class_labels[predicted_class]
 
             
-
+            st.write(prediction)
             if predicted_category == "Normal":
                 result=f"The Xray result is {predicted_category}, there is no issue with this Patient"
                 # Print the prediction
