@@ -108,7 +108,9 @@ def insert():
         # Convert the uploaded image to RGB
         img = Image.open(uploaded_file).convert("RGB")
         # Resize the image using TensorFlow
-        resize_img = resize(img, (1822,1275))
+        #resize_img = resize(img, (1822,1275))
+        resize_img = resize(img, (150,150))
+
 
         # Convert the resized image to an array
         img_array = img_to_array(resize_img)
@@ -120,7 +122,7 @@ def insert():
 
 
         # To load the model
-        loaded_model = load_model("pneumonia_best_model.h5")
+        loaded_model = load_model("another_pneumonia_best_model(6).h5")
         # Make the prediction
         
         if st.button("Predict"):
