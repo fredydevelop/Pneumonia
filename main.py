@@ -122,7 +122,7 @@ def insert():
 
 
         # To load the model
-        loaded_model = load_model("another_pneumonia_best_model(6).h5")
+        loaded_model = load_model("n.h5")
         # Make the prediction
         
         if st.button("Predict"):
