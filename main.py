@@ -20,7 +20,7 @@ from tensorflow.keras.models import load_model, save_model
 
 
 st.title("MMJXray")
-st.image("MMJXray.jpg",caption="**MMJXray**")
+st.image("MMJXray.jpg",width=80,caption="**MMJXray**")
 
 
 def sort_extension():
