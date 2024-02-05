@@ -18,9 +18,9 @@ from tensorflow.image import resize
 from tensorflow.keras.models import load_model, save_model
 
 
-with st.sidebar:
-    st.title("Home Page")
-    selection=st.radio("select your option",options=["upload an image", "Insert Image url"])
+
+st.title("Home Page")
+
 
 def sort_extension():
     
@@ -87,82 +87,6 @@ def saving_into_dataFrame():
 # import numpy as np
 # from io import BytesIO
 
-def download_and_save_image(image_url, save_path="downloaded_image.png"):
-    '''response = requests.get(image_url)
-    if response.status_code == 200:
-        image_data = BytesIO(response.content)
-        img = Image.open(image_data).convert("RGB")
-        saved_img_path="./"+save_path
-        img.save(saved_img_path)
-        resize_img = resize(img, (150, 150))
-    
-        img_array = img_to_array(resize_img)
-        img_array = np.expand_dims(img_array, axis=0)
-    
-        img_array_copy = img_array.copy()
-        img_array_copy /= 255.0
-    
-        loaded_model = load_model("Waste_Management_Model.h5")
-    
-        if st.button("Predict"):
-            prediction = loaded_model.predict(img_array_copy)
-            predicted_class = np.argmax(prediction)
-            
-            class_labels = {0: 'cardboard', 1: 'metal', 2: 'paper', 3: 'plastic'}
-            predicted_category = class_labels[predicted_class]
-            
-            result = f"This Item is a {predicted_category}"
-            st.success(result)
-            st.image(img, caption=None)
-    
-        
-    else:
-        st.error(f"Failed to download the image. Status code: {response.status_code}")'''
-
-    try:
-        response = requests.get(image_url)
-        response.raise_for_status()  # Raises HTTPError for bad responses (4xx or 5xx)
-    
-        image_data = BytesIO(response.content)
-        img = Image.open(image_data).convert("RGB")
-        saved_img_path = "./" + save_path
-        img.save(saved_img_path)
-        resize_img = resize(img, (150, 150))
-    
-        img_array = img_to_array(resize_img)
-        img_array = np.expand_dims(img_array, axis=0)
-    
-        img_array_copy = img_array.copy()
-        img_array_copy /= 255.0
-
-        loaded_model = load_model("Waste_Management_Model.h5")
-
-        if st.button("Predict"):
-            prediction = loaded_model.predict(img_array_copy)
-            predicted_class = np.argmax(prediction)
-    
-            class_labels = {0: 'cardboard', 1: 'metal', 2: 'paper', 3: 'plastic'}
-            predicted_category = class_labels[predicted_class]
-    
-            result = f"This Item is a {predicted_category}"
-            st.success(result)
-            st.image(img, caption=None)
-
-    except requests.exceptions.HTTPError as errh:
-        st.error(f"HTTP Error: {errh}")
-    except requests.exceptions.ConnectionError as errc:
-        st.error(f"Error Connecting: {errc}")
-    except requests.exceptions.RequestException as err:
-        st.error(f"Failed to download the image, The Image link is not a downloadble link")
-    except Exception as e:
-        st.error(f"An unexpected error occurred: {e}")
-
-def image_url_input():
-    st.title("Classification with URL")
-    image_url = st.text_input("Enter the image url and press enter", key="akaska")    
-    # if st.button("Download Image"):
-    if image_url != "":
-        download_and_save_image(image_url)
 
 
 
@@ -184,7 +108,9 @@ def insert():
         # Convert the uploaded image to RGB
         img = Image.open(uploaded_file).convert("RGB")
         # Resize the image using TensorFlow
-        resize_img = resize(img, (150, 150))
+        #resize_img = resize(img, (1822,1275))
+        resize_img = resize(img, (150,150))
+
 
         # Convert the resized image to an array
         img_array = img_to_array(resize_img)
@@ -196,39 +122,38 @@ def insert():
 
 
         # To load the model
-        loaded_model = load_model("Waste_Management_Model.h5")
+        loaded_model = load_model("another_pneumonia_best_model(6).h5")
         # Make the prediction
         
         if st.button("Predict"):
             prediction = loaded_model.predict(img_array_copy)
+        
             predicted_class = np.argmax(prediction)
 
             # Map the class label to its corresponding category
-            class_labels = {0: 'cardboard', 1: 'metal', 2: 'paper', 3: 'plastic'}
+            class_labels = {0: 'Normal', 1: 'Bacteria', 2: 'Virus'}
             predicted_category = class_labels[predicted_class]
 
             
-
-            if predicted_category == "cardboard":
-                result=f"This Item is a {predicted_category}, it should be recycled"
+            st.write(prediction)
+            if predicted_category == "Normal":
+                result=f"The Xray result is {predicted_category}, there is no issue with this Patient"
                 # Print the prediction
                 st.success(result)
                 st.image(img, caption=None)
-            elif predicted_category == "metal":
-                result=f"This Item is a {predicted_category}, it should be recycled"
+            elif predicted_category == "Bacteria":
+                result=f"The Xray result is {predicted_category}, this Patient has a Bacteria Pneumonia Sickness"
                 # Print the prediction
                 st.success(result)
                 st.image(img, caption=None)
-            elif predicted_category == "plastic":
-                result=f"This Item is a {predicted_category}, it should be recycled"
+            elif predicted_category == "Virus":
+                result=f"The Xray result is a {predicted_category}, this Patient has Virus Pneumonia"
                 # Print the prediction
                 st.success(result)
                 st.image(img, caption=None)
-            elif predicted_category == "paper":
-                result=f"This Item is a {predicted_category}, it should be disposed"
-                # Print the prediction
-                st.success(result)
-                st.image(img, caption=None)
+            else:
+                print()
+           
 
 
 
@@ -268,11 +193,10 @@ def insert():
 #     #     st.info('Upload your dataset !!')
 
 
-if selection== "upload an image":
+
+#insert()
+
+
+if __name__ == "__main__":
     insert()
 
-if selection =="Insert Image url":
-    image_url_input()
-
-# if __name__ == "__main__":
-#     main()
