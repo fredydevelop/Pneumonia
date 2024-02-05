@@ -103,7 +103,7 @@ def saving_into_dataFrame():
 
 
 def insert():
-    st.write("Upload Image to Classify")
+    st.header("Upload Image to Classify")
     
 
     # File uploader widget
