@@ -18,9 +18,13 @@ from tensorflow.image import resize
 from tensorflow.keras.models import load_model, save_model
 
 
+col1, col2 = st.columns(2)
 
-st.title("MMJXray")
-st.image("MMJXray.jpg",width=80,caption="**MMJXray**")
+with col1:
+    st.header("MMJ Xray-Classification")
+
+with col2:
+    st.image("MMJXray.jpg",width=80,caption="*MMJXray*")
 
 
 def sort_extension():
