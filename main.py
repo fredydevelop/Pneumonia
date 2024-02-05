@@ -22,7 +22,7 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.header("MMJ Xray-Classification")
-    st.image("MMJXray.jpg",width=80,caption="*MMJXray*")
+    st.image("MMJXray.jpg",width=80)
 
 
 def sort_extension():
