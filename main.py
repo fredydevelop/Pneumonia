@@ -19,7 +19,8 @@ from tensorflow.keras.models import load_model, save_model
 
 
 
-st.title("Home Page")
+st.title("MMJXray")
+st.image("MMJXray.jpg",caption="**MMJXray**")
 
 
 def sort_extension():
