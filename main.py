@@ -21,7 +21,7 @@ from tensorflow.keras.models import load_model, save_model
 col1, col2 = st.columns(2)
 
 with col1:
-    st.header("MMJ Xray-Classification")
+    st.header("PNEUMWARE  Xray-Classification")
     st.image("MMJXray.jpg",width=80)
 
 
